@@ -1,0 +1,13 @@
+app_root:  "./svc/account"
+ignored_folders:
+  - vendor
+included_extensions:
+  - .go
+  - .json
+  - .mod
+  - .sum
+build_target_path: "./svc/account/cmd/grpc-api"
+build_path: /tmp
+build_delay: 200ns
+binary_name: grpc-build
+enable_colors: true

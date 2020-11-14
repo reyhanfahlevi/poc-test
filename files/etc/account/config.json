@@ -1,0 +1,12 @@
+{
+  "server": {
+    "port": "50051"
+  },
+  "db": {
+    "postgres": "postgres://devel:devel@localhost/poc-test?sslmode=disable"
+  },
+  "app": {
+    "salt": "garem",
+    "jwt_secret": "secret"
+  }
+}

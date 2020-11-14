@@ -1,0 +1,55 @@
+version: "3.2"
+
+services:
+  account:
+    image: account
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "../.:/go/src/github.com/reyhanfahlevi/poc-test"
+    ports:
+      - "50051:50051"
+    depends_on:
+      - redis
+      - postgres
+    command: ["refresh","run","-c",".dev/refresh-account.yml"]
+    container_name: account
+  graphql:
+    image: graphql
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "../.:/go/src/github.com/reyhanfahlevi/poc-test"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+      - postgres
+      - account
+    command: ["refresh","run","-c",".dev/refresh-graphql.yml"]
+    container_name: account
+  postgres:
+    image: postgres:10.12-alpine
+    environment:
+      POSTGRES_DB: poc-test
+      POSTGRES_PASSWORD: devel
+      POSTGRES_USER: devel
+      PGDATA: /var/lib/postgresql/data/poc-test
+    container_name: eis-pg
+    volumes:
+      - ../.dev/pg/data:/var/lib/postgresql/data/poc-test
+      - ../.dev/db_scripts:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    networks:
+      - poc
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+networks:
+  poc:

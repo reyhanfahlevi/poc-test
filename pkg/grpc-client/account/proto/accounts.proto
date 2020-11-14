@@ -1,0 +1,54 @@
+syntax = "proto3";
+package account;
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+service Account {
+    rpc GetUserInfo(GetUserInfoReq) returns (GetUserInfoResp) {}
+    rpc CheckUserIsAuthenticated(CheckUserIsAuthenticatedReq) returns (CheckUserIsAuthenticatedRes) {}
+    rpc GetAccessToken(GetAccessTokenReq) returns (GetAccessTokenResp) {}
+    rpc CreateUser(CreateUserReq) returns (CreateUserRes) {}
+}
+
+message GetUserInfoReq {
+    int64 userID = 1 [(validator.field) = {int_gt: -1}];
+    string email = 2;
+}
+
+message GetUserInfoResp {
+    int64 userID = 1;
+    string name = 2;
+    string email = 3;
+    Date joinDate = 4;
+}
+
+message CheckUserIsAuthenticatedReq {
+    string authToken = 1;
+}
+
+message CheckUserIsAuthenticatedRes {
+    bool isAuthenticated = 1;
+}
+
+message Date {
+  int64 unixTime = 1;
+}
+
+message GetAccessTokenReq {
+    string email = 1;
+    string password = 2;
+}
+
+message GetAccessTokenResp {
+    string token = 1;
+    int64 expiredAt = 2;
+}
+
+message CreateUserReq {
+    string email = 1 [(validator.field) = {string_not_empty: true}];
+    string password = 2 [(validator.field) = {string_not_empty: true}];
+    string name = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message CreateUserRes {
+    bool success = 1;
+}
