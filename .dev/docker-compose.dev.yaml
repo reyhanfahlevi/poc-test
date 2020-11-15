@@ -11,10 +11,11 @@ services:
     ports:
       - "50051:50051"
     depends_on:
-      - redis
       - postgres
-    command: ["refresh","run","-c",".dev/refresh-account.yml"]
+    command: ["air", "-c", ".dev/account.air.toml"]
     container_name: account
+    networks:
+      - poc
   graphql:
     image: graphql
     build:
@@ -25,11 +26,43 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - redis
       - postgres
       - account
-    command: ["refresh","run","-c",".dev/refresh-graphql.yml"]
-    container_name: account
+      - shop
+    command: ["air", "-c", ".dev/graphql.air.toml"]
+    container_name: graphql
+    networks:
+      - poc
+  shop:
+    image: shop
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "../.:/go/src/github.com/reyhanfahlevi/poc-test"
+    ports:
+      - "50052:50052"
+    depends_on:
+      - postgres
+    command: ["air", "-c", ".dev/shop.air.toml"]
+    container_name: shop
+    networks:
+      - poc
+  product:
+    image: product
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "../.:/go/src/github.com/reyhanfahlevi/poc-test"
+    ports:
+      - "50053:50053"
+    depends_on:
+      - postgres
+    command: ["air", "-c", ".dev/product.air.toml"]
+    container_name: product
+    networks:
+      - poc
   postgres:
     image: postgres:10.12-alpine
     environment:
@@ -37,7 +70,7 @@ services:
       POSTGRES_PASSWORD: devel
       POSTGRES_USER: devel
       PGDATA: /var/lib/postgresql/data/poc-test
-    container_name: eis-pg
+    container_name: poc-pg
     volumes:
       - ../.dev/pg/data:/var/lib/postgresql/data/poc-test
       - ../.dev/db_scripts:/docker-entrypoint-initdb.d

@@ -3,6 +3,8 @@
     "port": "8080"
   },
   "grpc_server": {
-    "account": "localhost:50051"
+    "account": "account:50051",
+    "shop": "shop:50052",
+    "product": "product:50053"
   }
 }

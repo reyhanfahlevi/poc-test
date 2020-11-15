@@ -1,0 +1,77 @@
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  joinDate: String!
+}
+
+input NewUser {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input Login {
+  email: String!
+  password: String!
+}
+
+type Shop {
+  id: Int!
+  name: String!
+  address: String!
+  status: Int!
+}
+
+input OpenShop {
+  name: String!
+  address: String!
+}
+
+input NewProduct {
+  name: String!
+  description: String!
+  price: Int!
+  images: [String!]
+}
+
+type Product {
+  productID: Int!
+  shopID: Int!
+  name: String!
+  description: String!
+  price: Int!
+  images: [ProductImage!]
+  status: Int!
+}
+
+type ProductImage {
+  productID: Int!
+  ImageURL: String!
+}
+
+input EditProduct {
+  productID: Int!
+  name: String!
+  description: String!
+  price: Int!
+  images: [String!]
+}
+
+type Query {
+  getUserByEmail(email: String!): User!
+  getUserByID(id: Int!): User!
+  getShopInfo(shopID: Int!): Shop!
+  getMyShopInfo: Shop!
+  getProductInfo(productID: Int!): Product!
+  getProductList(limit: Int!, offset: Int!): [Product!]
+}
+
+type Mutation {
+  createUser(input: NewUser!): Boolean!
+  login(input: Login!): String!
+  openShop(input: OpenShop!): Boolean!
+  addProduct(input: NewProduct): Boolean!
+  editProduct(input: EditProduct): Boolean!
+  deleteProduct(productID: Int!): Boolean!
+}

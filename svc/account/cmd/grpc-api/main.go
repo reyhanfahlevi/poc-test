@@ -4,10 +4,9 @@ import (
 	"flag"
 	"os"
 
-	"github.com/reyhanfahlevi/pkg/go/log"
-
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
+	"github.com/reyhanfahlevi/pkg/go/log"
 	"github.com/reyhanfahlevi/poc-test/pkg/config"
 	"github.com/reyhanfahlevi/poc-test/svc/account/app/grpc"
 	"github.com/reyhanfahlevi/poc-test/svc/account/internal/repo"

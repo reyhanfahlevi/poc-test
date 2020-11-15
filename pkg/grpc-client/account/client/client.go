@@ -22,10 +22,6 @@ type Client struct {
 	redialLock sync.RWMutex
 }
 
-func (c *Client) CheckUserIsAuthenticated(context.Context, *pb.CheckUserIsAuthenticatedReq) (*pb.CheckUserIsAuthenticatedRes, error) {
-	panic("implement me")
-}
-
 // Options struct define option(s) available for affiliate grpc client
 type Options struct {
 	Address string

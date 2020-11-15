@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [accounts.proto](#accounts.proto)
+    - [AuthenticatedUser](#account.AuthenticatedUser)
     - [CheckUserIsAuthenticatedReq](#account.CheckUserIsAuthenticatedReq)
     - [CheckUserIsAuthenticatedRes](#account.CheckUserIsAuthenticatedRes)
     - [CreateUserReq](#account.CreateUserReq)
@@ -20,6 +21,7 @@
   
 
 - [accounts.proto](#accounts.proto)
+    - [AuthenticatedUser](#account.AuthenticatedUser)
     - [CheckUserIsAuthenticatedReq](#account.CheckUserIsAuthenticatedReq)
     - [CheckUserIsAuthenticatedRes](#account.CheckUserIsAuthenticatedRes)
     - [CreateUserReq](#account.CreateUserReq)
@@ -43,6 +45,25 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## accounts.proto
+
+
+
+<a name="account.AuthenticatedUser"></a>
+
+### AuthenticatedUser
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| userID | [int64](#int64) |  |  |
+| name | [string](#string) |  |  |
+| email | [string](#string) |  |  |
+| joinDate | [Date](#account.Date) |  |  |
+| status | [int32](#int32) |  |  |
+
+
+
 
 
 
@@ -70,6 +91,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | isAuthenticated | [bool](#bool) |  |  |
+| user | [AuthenticatedUser](#account.AuthenticatedUser) |  |  |
 
 
 
@@ -183,6 +205,7 @@
 | name | [string](#string) |  |  |
 | email | [string](#string) |  |  |
 | joinDate | [Date](#account.Date) |  |  |
+| status | [int32](#int32) |  |  |
 
 
 
@@ -218,6 +241,25 @@
 
 
 
+<a name="account.AuthenticatedUser"></a>
+
+### AuthenticatedUser
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| userID | [int64](#int64) |  |  |
+| name | [string](#string) |  |  |
+| email | [string](#string) |  |  |
+| joinDate | [Date](#account.Date) |  |  |
+| status | [int32](#int32) |  |  |
+
+
+
+
+
+
 <a name="account.CheckUserIsAuthenticatedReq"></a>
 
 ### CheckUserIsAuthenticatedReq
@@ -242,6 +284,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | isAuthenticated | [bool](#bool) |  |  |
+| user | [AuthenticatedUser](#account.AuthenticatedUser) |  |  |
 
 
 
@@ -355,6 +398,7 @@
 | name | [string](#string) |  |  |
 | email | [string](#string) |  |  |
 | joinDate | [Date](#account.Date) |  |  |
+| status | [int32](#int32) |  |  |
 
 
 

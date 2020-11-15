@@ -5,10 +5,10 @@ package account
 
 import (
 	fmt "fmt"
-	math "math"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -30,10 +30,23 @@ func (this *GetUserInfoResp) Validate() error {
 	}
 	return nil
 }
+func (this *AuthenticatedUser) Validate() error {
+	if this.JoinDate != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.JoinDate); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("JoinDate", err)
+		}
+	}
+	return nil
+}
 func (this *CheckUserIsAuthenticatedReq) Validate() error {
 	return nil
 }
 func (this *CheckUserIsAuthenticatedRes) Validate() error {
+	if this.User != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.User); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("User", err)
+		}
+	}
 	return nil
 }
 func (this *Date) Validate() error {

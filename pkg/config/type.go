@@ -26,6 +26,6 @@ type DatabasesConfig struct {
 
 type GRPCServerConfig struct {
 	Account string `json:"account"`
-	Seller  string `json:"seller"`
+	Shop    string `json:"shop"`
 	Product string `json:"product"`
 }

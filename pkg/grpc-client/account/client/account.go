@@ -6,14 +6,13 @@ import (
 	pb "github.com/reyhanfahlevi/poc-test/pkg/grpc-client/account/proto"
 )
 
+func (c *Client) CheckUserIsAuthenticated(ctx context.Context, in *pb.CheckUserIsAuthenticatedReq) (*pb.CheckUserIsAuthenticatedRes, error) {
+	return c.client.CheckUserIsAuthenticated(ctx, in)
+}
+
 // GetUserInfo get the current user info from account service
 func (c *Client) GetUserInfo(ctx context.Context, in *pb.GetUserInfoReq) (*pb.GetUserInfoResp, error) {
 	return c.client.GetUserInfo(ctx, in)
-}
-
-// CheckIsUserAuthenticated check current authenticated user by authToken
-func (c *Client) CheckIsUserAuthenticated(ctx context.Context, in *pb.CheckUserIsAuthenticatedReq) (*pb.CheckUserIsAuthenticatedRes, error) {
-	return c.client.CheckUserIsAuthenticated(ctx, in)
 }
 
 // GetAccessToken get user access token by email and password

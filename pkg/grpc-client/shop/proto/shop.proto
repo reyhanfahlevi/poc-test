@@ -1,0 +1,32 @@
+syntax = "proto3";
+package shop;
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+service Shop {
+    rpc GetShopInfo(GetShopInfoReq) returns (GetShopInfoRes) {}
+    rpc RegisterShop(RegisterShopReq) returns (RegisterShopResp) {}
+}
+
+message GetShopInfoReq {
+    int64 shopID = 1;
+    int64 userID = 2;
+}
+
+message GetShopInfoRes {
+    int64 id = 1;
+    int64 userID = 2;
+    string Name = 3;
+    string Address = 4;
+    int32 Status = 5;
+}
+
+
+message RegisterShopReq {
+    int64 userID = 1 [(validator.field) = {int_gt: 0}];
+    string Name = 2 [(validator.field) = {string_not_empty: true}] ;
+    string Address = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message RegisterShopResp {
+    bool success = 1;
+}

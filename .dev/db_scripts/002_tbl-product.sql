@@ -16,7 +16,7 @@ BEGIN;
 -- CREATE TABLE "wp_product" ------------------------------------
 CREATE TABLE IF NOT EXISTS "public"."wp_product" (
     "id" BIGINT DEFAULT nextval('wp_product_id_seq'::regclass) NOT NULL,
-    "seller_id" BIGINT  NOT NUll,
+    "shop_id" BIGINT  NOT NUll,
     "name" VARCHAR(255) NOT NULL,
     "description" VARCHAR(255) NOT NULL,
     "price" BIGINT DEFAULT 0 NOT NULL,
@@ -33,7 +33,7 @@ COMMIT;
 
 BEGIN;
 
-INSERT INTO "public"."wp_product" (seller_id,"name",description,price,status,created_time,updated_time)
+INSERT INTO "public"."wp_product" (shop_id,"name",description,price,status,created_time,updated_time)
 VALUES
        (1,'Baju Rodaemon','Baju Roda Emon',100000,1,now(),now()),
        (1,'Baju Pikachu','Baju Pika Pika',120000,1,now(),now()),

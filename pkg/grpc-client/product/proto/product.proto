@@ -1,0 +1,79 @@
+syntax = "proto3";
+package product;
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+service Product {
+    rpc CreateProduct(CreateProductReq) returns (CreateProductRes) {}
+    rpc UpdateProduct(UpdateProductReq) returns (UpdateProductRes) {}
+    rpc UpdateImage(UpdateImageReq) returns (UpdateImageRes) {}
+    rpc GetProductInfo(GetProductInfoReq) returns (GetProductInfoRes) {}
+    rpc GetProductList(GetProductListReq) returns (GetProductListRes) {}
+}
+
+message CreateProductReq {
+    string name = 1 [(validator.field) = {string_not_empty: true}];
+    string description = 2 [(validator.field) = {string_not_empty: true}];
+    int64 price = 3;
+    int64 shopID = 4 [(validator.field) = {int_gt: 0}];
+    repeated ProductImage images = 5 [(validator.field) = {repeated_count_min: 1}];
+}
+
+message ProductImage {
+    int64 productID = 1 ;
+    string ImageURL = 2 ;
+}
+
+message CreateProductRes {
+    bool success = 1;
+}
+
+message UpdateProductReq {
+    int64 productID = 1 [(validator.field) = {int_gt: 0}];
+    string name = 2 [(validator.field) = {string_not_empty: true}];
+    string description = 3 [(validator.field) = {string_not_empty: true}];
+    int64 price = 4;
+    int64 shopID = 5 [(validator.field) = {int_gt: 0}];
+    repeated ProductImage images = 6 [(validator.field) = {repeated_count_min: 1}];
+    int32 status = 7;
+}
+
+message UpdateProductRes {
+    bool success = 1;
+}
+
+message UpdateImageReq {
+    int64 productID = 1 [(validator.field) = {int_gt: 0}];
+    repeated ProductImage images = 6 [(validator.field) = {repeated_count_min: 1}];
+}
+
+message UpdateImageRes {
+    bool success = 1;
+}
+
+message GetProductInfoReq {
+    int64 productID = 1 [(validator.field) = {int_gt: 0}];
+}
+
+message GetProductInfoRes {
+    ProductInfo product = 1;
+}
+
+message GetProductListReq {
+    int32 limit = 1 [(validator.field) = {int_gt: 0}];
+    int32 offset = 2;
+    int64 shopID = 3 [(validator.field) = {int_gt: 0}];
+}
+
+message GetProductListRes {
+    repeated ProductInfo products = 1;
+}
+
+message ProductInfo {
+    int64 productID = 1 [(validator.field) = {int_gt: 0}];
+    string name = 2 [(validator.field) = {string_not_empty: true}];
+    string description = 3 [(validator.field) = {string_not_empty: true}];
+    int64 price = 4;
+    int64 shopID = 5 [(validator.field) = {int_gt: 0}];
+    repeated ProductImage images = 6;
+    int32 status = 7;
+}

@@ -1,0 +1,13 @@
+?   	github.com/reyhanfahlevi/poc-test/svc/account/app	[no test files]
+?   	github.com/reyhanfahlevi/poc-test/svc/account/app/grpc	[no test files]
+ok  	github.com/reyhanfahlevi/poc-test/svc/account/internal/repo	(cached)	coverage: 100.0% of statements
+ok  	github.com/reyhanfahlevi/poc-test/svc/account/internal/usecase	(cached)	coverage: 100.0% of statements
+?   	github.com/reyhanfahlevi/poc-test/svc/graphql/internal/resolver	[no test files]
+?   	github.com/reyhanfahlevi/poc-test/svc/product/app	[no test files]
+?   	github.com/reyhanfahlevi/poc-test/svc/product/app/grpc	[no test files]
+ok  	github.com/reyhanfahlevi/poc-test/svc/product/internal/repo	(cached)	coverage: 36.6% of statements
+ok  	github.com/reyhanfahlevi/poc-test/svc/product/internal/usecase	(cached)	coverage: 79.2% of statements
+?   	github.com/reyhanfahlevi/poc-test/svc/shop/app	[no test files]
+?   	github.com/reyhanfahlevi/poc-test/svc/shop/app/grpc	[no test files]
+ok  	github.com/reyhanfahlevi/poc-test/svc/shop/internal/repo	(cached)	coverage: 100.0% of statements
+ok  	github.com/reyhanfahlevi/poc-test/svc/shop/internal/usecase	(cached)	coverage: 100.0% of statements

@@ -19,6 +19,15 @@ message GetUserInfoResp {
     string name = 2;
     string email = 3;
     Date joinDate = 4;
+    int32 status = 5;
+}
+
+message AuthenticatedUser {
+    int64 userID = 1;
+    string name = 2;
+    string email = 3;
+    Date joinDate = 4;
+    int32 status = 5;
 }
 
 message CheckUserIsAuthenticatedReq {
@@ -27,6 +36,7 @@ message CheckUserIsAuthenticatedReq {
 
 message CheckUserIsAuthenticatedRes {
     bool isAuthenticated = 1;
+    AuthenticatedUser user = 2;
 }
 
 message Date {

@@ -2,15 +2,57 @@
 
 package model
 
+type EditProduct struct {
+	ProductID   int64    `json:"productID"`
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
+	Price       int64    `json:"price"`
+	Images      []string `json:"images"`
+}
+
 type Login struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+
+type NewProduct struct {
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
+	Price       int64    `json:"price"`
+	Images      []string `json:"images"`
 }
 
 type NewUser struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+
+type OpenShop struct {
+	Name    string `json:"name"`
+	Address string `json:"address"`
+}
+
+type Product struct {
+	ProductID   int64           `json:"productID"`
+	ShopID      int64           `json:"shopID"`
+	Name        string          `json:"name"`
+	Description string          `json:"description"`
+	Price       int64           `json:"price"`
+	Images      []*ProductImage `json:"images"`
+	Status      int64           `json:"status"`
+}
+
+type ProductImage struct {
+	ProductID int64  `json:"productID"`
+	ImageURL  string `json:"ImageURL"`
+}
+
+type Shop struct {
+	ID      int64  `json:"id"`
+	Name    string `json:"name"`
+	Address string `json:"address"`
+	Status  int64  `json:"status"`
 }
 
 type User struct {
